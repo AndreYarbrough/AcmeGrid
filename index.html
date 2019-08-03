@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <style>
+            .row{
+                display: flex;
+            }
+            .cell{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+                border:solid 1px black;
+                width: 3rem;
+                height: 3rem;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="grid"></div>
+
+        <script>
+            const rows =[];
+            for(let i =0;i<5;i++){
+                const row = [];
+                rows.push(row);
+                for(j=0;j<5;j++){
+                    row.push(Math.round(Math.random()*4));
+                }
+            }
+            //console.log(rows)
+            const html = rows.map(row => `<div class='row'>
+            ${ row.map(digit => `<div class='cell'>${digit}</div>`).join('')}</div>`
+            ).join('');
+            //console.log(html);
+            const grid = document.querySelector('#grid');
+            grid.innerHTML=html;
+            grid.addEventListener('click',(evnt)=>{
+                const cell=evnt.target;
+                const row=cell.parentNode;
+                const grid=row.parentNode;
+                console.log(evnt.target);
+            });
+        </script>
+    </body>
+</html>
